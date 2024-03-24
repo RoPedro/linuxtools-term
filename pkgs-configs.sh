@@ -25,17 +25,26 @@ install_packages()
         }
     done
 
-    git clone --depth=2 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-
+    # Clones powerlevel10k 
+    if [ -d "~/powerlevel10k" ]; then
+        echo "Directory already exists. Skipping git clone."
+    else
+        git clone --depth=2 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    fi
     sleep 0.1s
 
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+    # Clones zsh-autosuggestions
+    if [ -d "~/.zsh/zsh-autosuggestions" ]; then
+        echo "Directory already exists. Skipping git clone."
+    else
+        git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+    fi
 
     sleep 0.1s
 
     # rm -rf makes sure that directory doesn't exist before installation
     rm -rf ~/.config/nvim
-    git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 # installs NvChad
+    git clone https://github.com/NvChad/starter ~/.config/nvim
 
 }
 
@@ -58,13 +67,19 @@ tmux_configurations()
 
     sleep 0.1s
     
-    source-file ~/.tmux.conf
+    source ~/.tmux.conf
 }
 
 main()
 {
     install_packages
-    configurations
+
+    sleep 0.1s
+
+    zsh_configurations
+
+    sleep 0.1s
+
     tmux_configurations
 
     sleep 0.1s
