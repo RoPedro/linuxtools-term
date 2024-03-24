@@ -1,6 +1,15 @@
 #!/bin/bash
 
-PACKAGES_TO_INSTALL= "vim neovim tmux build-essential make ripgrep gh"
+packages=(
+    "vim"
+    "neovim"
+    "tmux"
+    "build-essential"
+    "make"
+    "ripgrep"
+    "gh"
+    "cargo"
+)
 
 install_packages()
 {   
@@ -8,7 +17,14 @@ install_packages()
     sudo add-apt-repository ppa:neovim-ppa/unstable -y
     sudo apt update -y
 
-    sudo apt install -y $PACKAGES_TO_INSTALL
+    # Install packages with error handling
+    echo "Installing packages..."
+    for package in "${packages[@]}"; do
+        sudo apt install -y $package || {
+            echo "Failed to install $package, skipping..."
+        }
+    done
+
     git clone --depth=2 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 
     sleep 0.1s
@@ -18,7 +34,8 @@ install_packages()
     sleep 0.1s
 
     # rm -rf makes sure that directory doesn't exist before installation
-    rm -rf ~/.config/nvim && git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+    rm -rf ~/.config/nvim
+    git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 # installs NvChad
 
 }
 
