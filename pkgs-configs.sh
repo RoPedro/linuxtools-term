@@ -1,17 +1,49 @@
-PACKAGES_TO_INSTALL= "git vim neovim tmux build-essential make ripgrep chromium-browser gh"
+#!/bin/bash
+
+packages=(
+    "vim"
+    "neovim"
+    "tmux"
+    "build-essential"
+    "make"
+    "ripgrep"
+    "gh"
+    "cargo"
+)
 
 install_packages()
-{
-    sudo apt update && sudo apt upgrade -y
+{   
+    # Adding Neovim PPA
+    echo "Adding Neovim PPA..."
     sudo add-apt-repository ppa:neovim-ppa/unstable -y
+
     sudo apt update -y
-    sudo apt install -y $PACKAGES_TO_INSTALL
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k 
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
+    # Install packages with error handling
+    echo "Installing packages..."
+    for package in "${packages[@]}"; do
+        sudo apt install -y $package || {
+            echo "Failed to install $package, skipping..."
+        }
+    done
+
+    # Clones powerlevel10k 
+    if [ -d "~/powerlevel10k" ]; then
+        echo "Directory already exists. Skipping git clone."
+    else
+        git clone --depth=2 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    fi
+
+    # Clones zsh-autosuggestions
+    if [ -d "~/.zsh/zsh-autosuggestions" ]; then
+        echo "Directory already exists. Skipping git clone."
+    else
+        git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+    fi
 
     # rm -rf makes sure that directory doesn't exist before installation
-    rm -rf ~/.config/nvim && git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-
+    rm -rf ~/.config/nvim
+    git clone https://github.com/NvChad/starter ~/.config/nvim
 }
 
 zsh_configurations()
@@ -22,21 +54,25 @@ zsh_configurations()
 
 tmux_configurations()
 {
-    if [ -e ~/.tmux.conf ]; then
-        mv ~/.tmux.conf ~/.tmux.conf.old
-    fi
+    echo "Configuring Tmux..."
 
-    cp /FreshUbuntu/.tmux.conf ~/.tmux.conf
+    if [ -f ~/.tmux.conf ]; then
+        echo "tmux.conf already exists. copying files"
+        cat ~/FreshUbuntu/.tmux.conf >> ~/.tmux.conf
+    else
+        echo "Creating .tmux.conf"
+        touch ~/.tmux.conf
+        cat ~/FreshUbuntu/.tmux.conf >> ~/.tmux.conf
+    fi
 }
 
 main()
 {
     install_packages
-    configurations
+    zsh_configurations
     tmux_configurations
 
-    source-file
-    source ~/.zshrc
+    echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
 }
 
 main
