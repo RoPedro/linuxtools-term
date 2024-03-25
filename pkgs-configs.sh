@@ -1,6 +1,7 @@
 #!/bin/bash
 
 packages=(
+    "wget"
     "vim"
     "neovim"
     "tmux"
@@ -51,6 +52,25 @@ clone_repositories() {
     git clone https://github.com/NvChad/starter "$HOME/.config/nvim" || { echo "Failed to clone NvChad repository"; return 1; }
 }
 
+# Install NerdFonts
+install_nerdfonts()
+{
+    echo "Installing NerdFonts..."
+
+    # Create ~/.local/share/fonts if it doesn't exist
+    if [ ! -d ~/.local/share/fonts ]; then
+    mkdir -p ~/.local/share/fonts
+    fi
+
+    # Installs JetBrainsMono to ~/.local/share/fonts
+    wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip \
+    && cd ~/.local/share/fonts \
+    && unzip JetBrainsMono.zip \
+    && rm JetBrainsMono.zip \
+    && fc-cache -fv
+
+    echo "NerdFonts installed."
+}
 
 # Configures main shell and main theme
 zsh_configurations()
@@ -78,6 +98,7 @@ main()
 {
     install_packages
     clone_repositories
+    install_nerdfonts
     zsh_configurations
     tmux_configurations
 
