@@ -30,27 +30,27 @@ install_packages()
 
 }
 
-# Clone repositories
-clone_repositories()
-{
+# Clones repositories
+clone_repositories() {
     # Clones powerlevel10k 
-    if [ -d "~/powerlevel10k" ]; then
-        echo "Directory already exists. Skipping git clone."
+    if [ -d "$HOME/powerlevel10k" ]; then
+        echo "Powerlevel10k directory already exists. Skipping git clone."
     else
-        git clone --depth=2 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+        git clone --depth=2 https://github.com/romkatv/powerlevel10k.git "$HOME/powerlevel10k" || { echo "Failed to clone Powerlevel10k repository"; return 1; }
     fi
 
     # Clones zsh-autosuggestions
-    if [ -d "~/.zsh/zsh-autosuggestions" ]; then
-        echo "Directory already exists. Skipping git clone."
+    if [ -d "$HOME/.zsh/zsh-autosuggestions" ]; then
+        echo "Zsh-autosuggestions directory already exists. Skipping git clone."
     else
-        git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions" || { echo "Failed to clone Zsh-autosuggestions repository"; return 1; }
     fi
 
-    # rm -rf makes sure that directory doesn't exist before installation
-    rm -rf ~/.config/nvim
-    git clone https://github.com/NvChad/starter ~/.config/nvim
+    # Remove existing nvim directory before cloning
+    rm -rf "$HOME/.config/nvim"
+    git clone https://github.com/NvChad/starter "$HOME/.config/nvim" || { echo "Failed to clone NvChad repository"; return 1; }
 }
+
 
 # Configures main shell and main theme
 zsh_configurations()
