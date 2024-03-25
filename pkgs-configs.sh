@@ -14,7 +14,9 @@ packages=(
 install_packages()
 {   
     # Adding Neovim PPA
+    echo "Adding Neovim PPA..."
     sudo add-apt-repository ppa:neovim-ppa/unstable -y
+
     sudo apt update -y
 
     # Install packages with error handling
@@ -31,7 +33,6 @@ install_packages()
     else
         git clone --depth=2 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
     fi
-    sleep 0.1s
 
     # Clones zsh-autosuggestions
     if [ -d "~/.zsh/zsh-autosuggestions" ]; then
@@ -40,52 +41,37 @@ install_packages()
         git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
     fi
 
-    sleep 0.1s
-
     # rm -rf makes sure that directory doesn't exist before installation
     rm -rf ~/.config/nvim
     git clone https://github.com/NvChad/starter ~/.config/nvim
-
 }
 
 zsh_configurations()
 {
     echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
-
-    sleep 0.1s
-
     echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >> ~/.zshrc
 }
 
 tmux_configurations()
 {
-    if [ -e ~/.tmux.conf ]; then
-        mv ~/.tmux.conf ~/.tmux.conf.old
-    fi
+    echo "Configuring Tmux..."
 
-    cp /FreshUbuntu/.tmux.conf ~/.tmux.conf
-
-    sleep 0.1s
-    
-    source ~/.tmux.conf
+    if [ -f ~/.tmux.conf ]; then
+        echo "tmux.conf already exists. copying files"
+        cat ~/FreshUbuntu/.tmux.conf >> ~/.tmux.conf
+    else
+        echo "Creating .tmux.conf"
+        touch ~/.tmux.conf
+        cat ~/FreshUbuntu/.tmux.conf >> ~/.tmux.conf
 }
 
 main()
 {
     install_packages
-
-    sleep 0.1s
-
     zsh_configurations
-
-    sleep 0.1s
-
     tmux_configurations
 
-    sleep 0.1s
-
-
-    source ~/.zshrc
+    echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
 }
 
 main
