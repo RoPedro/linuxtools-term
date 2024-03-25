@@ -63,6 +63,7 @@ tmux_configurations()
         echo "Creating .tmux.conf"
         touch ~/.tmux.conf
         cat ~/FreshUbuntu/.tmux.conf >> ~/.tmux.conf
+    fi
 }
 
 main()
