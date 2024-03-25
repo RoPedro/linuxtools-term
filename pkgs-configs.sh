@@ -11,6 +11,7 @@ packages=(
     "cargo"
 )
 
+# Install all packages
 install_packages()
 {   
     # Adding Neovim PPA
@@ -27,6 +28,11 @@ install_packages()
         }
     done
 
+}
+
+# Clone repositories
+clone_repositories()
+{
     # Clones powerlevel10k 
     if [ -d "~/powerlevel10k" ]; then
         echo "Directory already exists. Skipping git clone."
@@ -46,12 +52,14 @@ install_packages()
     git clone https://github.com/NvChad/starter ~/.config/nvim
 }
 
+# Configures main shell and main theme
 zsh_configurations()
 {
     echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
     echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >> ~/.zshrc
 }
 
+# Configures Tmux
 tmux_configurations()
 {
     echo "Configuring Tmux..."
@@ -69,6 +77,7 @@ tmux_configurations()
 main()
 {
     install_packages
+    clone_repositories
     zsh_configurations
     tmux_configurations
 
