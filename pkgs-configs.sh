@@ -55,6 +55,28 @@ clone_repositories() {
     echo "Repositories cloned."
 }
 
+check_configure_git() {
+    # Check if Git is installed
+    if ! command -v git &> /dev/null; then
+        echo "Git is not installed. Please install Git to continue."
+        return 1
+    fi
+
+    # Check if git config user.name is set
+    if [ -z "$(git config --get user.name)" ]; then
+        read -p "Git username not configured. Please enter your Git username: " username
+        git config --global user.name "$username"
+    fi
+
+    # Check if git config user.email is set
+    if [ -z "$(git config --get user.email)" ]; then
+        read -p "Git email not configured. Please enter your Git email: " email
+        git config --global user.email "$email"
+    fi
+
+    echo "Git configuration completed."
+}
+
 # Install NerdFonts
 install_nerdfonts()
 {
@@ -109,6 +131,7 @@ main()
 {
     install_packages
     clone_repositories
+    check_configure_git
     install_nerdfonts
     zsh_configurations
     tmux_configurations
