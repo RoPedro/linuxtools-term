@@ -29,6 +29,7 @@ install_packages()
         }
     done
 
+    echo "Installed packages: ${packages[*]}"
 }
 
 # Clones repositories
@@ -50,6 +51,8 @@ clone_repositories() {
     # Remove existing nvim directory before cloning
     rm -rf "$HOME/.config/nvim"
     git clone https://github.com/NvChad/starter "$HOME/.config/nvim" || { echo "Failed to clone NvChad repository"; return 1; }
+
+    echo "Repositories cloned."
 }
 
 # Install NerdFonts
@@ -75,8 +78,16 @@ install_nerdfonts()
 # Configures main shell and main theme
 zsh_configurations()
 {
+    echo "Configuring Zsh..."
+
+    # Powerlevel10k and Zsh-autosuggestions
     echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
     echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >> ~/.zshrc
+
+    # Adding keybindings
+    echo "bindkey '^H' backward-kill-word" >> ~/.zshrc
+
+    echo "Zsh configurations complete."
 }
 
 # Configures Tmux
