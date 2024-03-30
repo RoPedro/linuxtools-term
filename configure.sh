@@ -7,7 +7,7 @@ packages=(
     "tmux"
     "build-essential"
     "make"
-    "ripgrep"
+    "ripgrep" 
     "gh"
     "cargo"
 )
@@ -30,6 +30,10 @@ install_packages()
     done
 
     echo "Installed packages: ${packages[*]}"
+
+    echo "Installing cargo packages..."
+    cargo install eza
+    sudo apt install bat -y
 }
 
 # Clones repositories
@@ -105,6 +109,26 @@ zsh_configurations()
     # Powerlevel10k and Zsh-autosuggestions
     echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
     echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >> ~/.zshrc
+
+    # Adding aliases
+    echo "Adding aliases..."
+    echo "alias updateUpgrade='sudo apt update && sudo apt upgrade -y'" >> ~/.zshrc
+
+    if ! type "eza" > /dev/null 2>&1; then
+        echo "Alias 'eza' not available, skipping..."
+    else
+        echo "alias ls='eza'" >> ~/.zshrc
+    fi
+
+    if type "bat" > /dev/null 2>&1; then
+        echo "Using 'bat' as replacement for 'cat'..."
+        echo "alias cat='bat'" >> ~/.zshrc
+    elif type "batcat" > /dev/null 2>&1; then
+        echo "Using 'batcat' as replacement for 'cat'..."
+        echo "alias cat='batcat'" >> ~/.zshrc
+    else
+        echo "Neither 'bat' nor 'batcat' found, skipping..."
+    fi
 
     # Adding keybindings
     echo "bindkey '^H' backward-kill-word" >> ~/.zshrc
