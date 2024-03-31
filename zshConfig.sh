@@ -4,6 +4,8 @@
 sudo apt update
 sudo apt install -y zsh
 
+chmod +x ~/FreshUbuntu/configure.sh
+
 # Change default shell to Zsh
 sudo chsh -s $(which zsh) $USER
 
