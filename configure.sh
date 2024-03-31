@@ -106,6 +106,9 @@ zsh_configurations()
 {
     echo "Configuring Zsh..."
 
+    # Adding path
+    echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
+
     # Powerlevel10k and Zsh-autosuggestions
     echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
     echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >> ~/.zshrc
