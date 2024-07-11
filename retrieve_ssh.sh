@@ -25,3 +25,8 @@ retrieve_ssh_directory()
 
     echo "SSH keys retrieved."
 }
+
+main()
+{
+    retrieve_ssh_directory
+}
