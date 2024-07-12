@@ -146,11 +146,11 @@ tmux_configurations()
 
     if [ -f ~/.tmux.conf ]; then
         echo "tmux.conf already exists. copying files"
-        cat ~/FreshUbuntu/.tmux.conf >> ~/.tmux.conf
+        cat ~/linuxtools/.tmux.conf >> ~/.tmux.conf
     else
         echo "Creating .tmux.conf"
         touch ~/.tmux.conf
-        cat ~/FreshUbuntu/.tmux.conf >> ~/.tmux.conf
+        cat ~/linuxtools/.tmux.conf >> ~/.tmux.conf
     fi
 }
 
