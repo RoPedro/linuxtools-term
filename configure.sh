@@ -163,6 +163,10 @@ main()
     zsh_configurations
     tmux_configurations
 
+    # Retrieves backups
+    ./retrieve_ssh.sh
+    ./retrieve_projects.sh
+
     echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
 }
 
