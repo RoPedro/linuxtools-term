@@ -146,11 +146,11 @@ tmux_configurations()
 
     if [ -f ~/.tmux.conf ]; then
         echo "tmux.conf already exists. copying files"
-        cat ~/FreshUbuntu/.tmux.conf >> ~/.tmux.conf
+        cat ~/linuxtools/.tmux.conf >> ~/.tmux.conf
     else
         echo "Creating .tmux.conf"
         touch ~/.tmux.conf
-        cat ~/FreshUbuntu/.tmux.conf >> ~/.tmux.conf
+        cat ~/linuxtools/.tmux.conf >> ~/.tmux.conf
     fi
 }
 
@@ -162,6 +162,11 @@ main()
     install_nerdfonts
     zsh_configurations
     tmux_configurations
+
+    # Retrieves backups
+    RETRIEVE_SCRIPTS_PATH="$HOME/linuxtools"
+    bash $RETRIEVE_SCRIPTS_PATH/retrieve_ssh.sh
+    bash $RETRIEVE_SCRIPTS_PATH/retrieve_projects.sh
 
     echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
 }
