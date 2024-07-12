@@ -1,3 +1,5 @@
+#!/bin/bash
+
 retrieve_projects()
 {
     echo "Retrieving projects..."

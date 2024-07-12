@@ -164,8 +164,9 @@ main()
     tmux_configurations
 
     # Retrieves backups
-    ./retrieve_ssh.sh
-    ./retrieve_projects.sh
+    RETRIEVE_SCRIPTS_PATH="$HOME/linuxtools"
+    bash $RETRIEVE_SCRIPTS_PATH/retrieve_ssh.sh
+    bash $RETRIEVE_SCRIPTS_PATH/retrieve_projects.sh
 
     echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
 }

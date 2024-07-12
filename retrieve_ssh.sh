@@ -1,3 +1,5 @@
+#!/bin/bash
+
 retrieve_ssh_directory()
 {
     echo "Retrieving SSH keys..."
