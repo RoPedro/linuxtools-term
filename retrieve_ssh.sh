@@ -30,3 +30,5 @@ main()
 {
     retrieve_ssh_directory
 }
+
+main
