@@ -1,0 +1,11 @@
+packages=(
+    "wget"
+    "vim"
+    "neovim"
+    "tmux"
+    "build-essential"
+    "make"
+    "ripgrep" 
+    "gh"
+    "cargo"
+)
