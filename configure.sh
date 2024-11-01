@@ -1,16 +1,6 @@
 #!/bin/bash
 
-packages=(
-    "wget"
-    "vim"
-    "neovim"
-    "tmux"
-    "build-essential"
-    "make"
-    "ripgrep" 
-    "gh"
-    "cargo"
-)
+source ./apt_packages.sh
 
 # Install all packages
 install_packages()
