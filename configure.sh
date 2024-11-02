@@ -144,6 +144,19 @@ tmux_configurations()
     fi
 }
 
+p10k_configuration()
+{
+    echo "Configuring p10k..."
+    if [ -f ~/.p10k.zsh ]; then
+        echo "p10.zsh already exists. copying files"
+        cat ~/linuxtools/.p10k.zsh >> ~/.p10k.zsh
+    else
+        echo "Creating .tmux.conf"
+        touch ~/.p10k.zsh
+        cat ~/linuxtools/.p10k.zsh >> ~/.p10k.zsh
+    fi
+}
+
 main()
 {
     install_packages
@@ -152,11 +165,7 @@ main()
     install_nerdfonts
     zsh_configurations
     tmux_configurations
-
-    # Retrieves backups
-    RETRIEVE_SCRIPTS_PATH="$HOME/linuxtools"
-    bash $RETRIEVE_SCRIPTS_PATH/retrieve_ssh.sh
-    bash $RETRIEVE_SCRIPTS_PATH/retrieve_projects.sh
+    p10k_configuration
 
     echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
 }
