@@ -157,7 +157,7 @@ p10k_configuration()
     fi
 
     # Sources p10k.zsh
-    echo -e "\n[[ ! -f ~/.p10k.zsh]] || source ~/.p10k.zsh " >> ~/.zshrc
+    echo -e "\n[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh " >> ~/.zshrc
 }
 
 main()
