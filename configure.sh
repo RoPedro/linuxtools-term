@@ -155,6 +155,9 @@ p10k_configuration()
         touch ~/.p10k.zsh
         cat ~/linuxtools/.p10k.zsh >> ~/.p10k.zsh
     fi
+
+    # Sources p10k.zsh
+    echo -e "\n[[ ! -f ~/.p10k.zsh]] || source ~/.p10k.zsh " >> ~/.zshrc
 }
 
 main()
