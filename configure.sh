@@ -47,6 +47,18 @@ clone_repositories() {
     git clone https://github.com/LazyVim/starter ~/.config/nvim || { echo "Failed to clone LazyVim repository"; return 1; }
     rm -rf ~/.config/nvim/.git
 
+    # lazygit installation
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo ~/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf ~/lazygit.tar.gz ~/lazygit
+    sudo install lazygit /usr/local/bin
+    rm -rf ~/lazygit.tar.gz
+    rm -rf ~/lazygit
+
+    if ! command -v lazygit &> /dev/null then
+        echo "lazygit was not installed, skipping."
+    fi
+
     echo "Repositories cloned."
 }
 
