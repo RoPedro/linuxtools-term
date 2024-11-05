@@ -42,9 +42,10 @@ clone_repositories() {
         git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions" || { echo "Failed to clone Zsh-autosuggestions repository"; return 1; }
     fi
 
-    # Remove existing nvim directory before cloning
-    rm -rf "$HOME/.config/nvim"
-    git clone https://github.com/NvChad/starter "$HOME/.config/nvim" || { echo "Failed to clone NvChad repository"; return 1; }
+    # LazyVim installation 
+    rm -rf "$HOME/.config/nvim" # Remove existing nvim directory before cloning
+    git clone https://github.com/LazyVim/starter ~/.config/nvim || { echo "Failed to clone LazyVim repository"; return 1; }
+    rm -rf ~/.config/nvim/.git
 
     echo "Repositories cloned."
 }
