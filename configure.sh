@@ -6,8 +6,8 @@ source ./apt_packages.sh
 install_packages()
 {   
     # Adding Neovim PPA
-    echo "Adding Neovim PPA..."
     sudo add-apt-repository ppa:neovim-ppa/unstable -y
+    echo "Adding Neovim PPA..."
 
     sudo apt update -y
 
@@ -161,7 +161,7 @@ p10k_configuration()
 }
 
 main()
-{
+{   
     install_packages
     clone_repositories
     check_configure_git
