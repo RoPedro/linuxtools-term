@@ -49,13 +49,20 @@ clone_repositories() {
     rm -rf ~/.config/nvim/.git
 
     # lazygit installation
-    echo "Installing lazygit"
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -Lo ~/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf ~/lazygit.tar.gz ~/lazygit
-    sudo install lazygit /usr/local/bin
-    rm -rf ~/lazygit.tar.gz
-    rm -rf ~/lazygit
+    if ! command -v curl &> /dev/null; then
+        echo "CURL NOT INSTALLED, LAZYGIT INSTALLATION CANCELLED."
+        return 1
+    else
+        echo "Installing lazygit"
+        LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+        curl -Lo ~/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+        tar xf ~/lazygit.tar.gz ~/lazygit
+        sudo install lazygit /usr/local/bin
+
+        # Cleans the trash
+        rm -rf ~/lazygit.tar.gz
+        rm -rf ~/lazygit
+    fi
 
     if ! command -v lazygit &> /dev/null then
         echo "lazygit was not installed, skipping."
