@@ -78,7 +78,7 @@ install_nerdfonts()
 
     # Create ~/.local/share/fonts if it doesn't exist
     if [ ! -d ~/.local/share/fonts ]; then
-    mkdir -p ~/.local/share/fonts
+        mkdir -p ~/.local/share/fonts
     fi
 
     # Installs JetBrainsMono to ~/.local/share/fonts
