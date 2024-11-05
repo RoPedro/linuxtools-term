@@ -176,8 +176,8 @@ p10k_configuration()
 main()
 {   
     install_packages
-    clone_repositories
     check_configure_git
+    clone_repositories
     install_nerdfonts
     zsh_configurations
     tmux_configurations
