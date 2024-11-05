@@ -64,7 +64,7 @@ clone_repositories() {
         rm -rf ~/lazygit
     fi
 
-    if ! command -v lazygit &> /dev/null then
+    if ! command -v lazygit &> /dev/null; then
         echo "lazygit was not installed, skipping."
     fi
 
