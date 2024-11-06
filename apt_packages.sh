@@ -1,5 +1,6 @@
 packages=(
     "wget"
+    "curl"
     "vim"
     "neovim"
     "tmux"

@@ -6,8 +6,8 @@ source ./apt_packages.sh
 install_packages()
 {   
     # Adding Neovim PPA
-    echo "Adding Neovim PPA..."
     sudo add-apt-repository ppa:neovim-ppa/unstable -y
+    echo "Adding Neovim PPA..."
 
     sudo apt update -y
 
@@ -42,9 +42,31 @@ clone_repositories() {
         git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions" || { echo "Failed to clone Zsh-autosuggestions repository"; return 1; }
     fi
 
-    # Remove existing nvim directory before cloning
-    rm -rf "$HOME/.config/nvim"
-    git clone https://github.com/NvChad/starter "$HOME/.config/nvim" || { echo "Failed to clone NvChad repository"; return 1; }
+    # LazyVim installation 
+    echo "Installing lazyvim"
+    rm -rf "$HOME/.config/nvim" # Remove existing nvim directory before cloning
+    git clone https://github.com/LazyVim/starter ~/.config/nvim || { echo "Failed to clone LazyVim repository"; return 1; }
+    rm -rf ~/.config/nvim/.git
+
+    # lazygit installation
+    if ! command -v curl &> /dev/null; then
+        echo "CURL NOT INSTALLED, LAZYGIT INSTALLATION CANCELLED."
+        return 1
+    else
+        echo "Installing lazygit"
+        LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+        curl -Lo ~/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+        tar xf ~/lazygit.tar.gz lazygit
+        sudo install lazygit /usr/local/bin
+
+        # Cleans the trash
+        rm -rf ~/lazygit.tar.gz
+        rm -rf ~/lazygit
+    fi
+
+    if ! command -v lazygit &> /dev/null; then
+        echo "lazygit was not installed, skipping."
+    fi
 
     echo "Repositories cloned."
 }
@@ -78,7 +100,7 @@ install_nerdfonts()
 
     # Create ~/.local/share/fonts if it doesn't exist
     if [ ! -d ~/.local/share/fonts ]; then
-    mkdir -p ~/.local/share/fonts
+        mkdir -p ~/.local/share/fonts
     fi
 
     # Installs JetBrainsMono to ~/.local/share/fonts
@@ -161,10 +183,10 @@ p10k_configuration()
 }
 
 main()
-{
+{   
     install_packages
-    clone_repositories
     check_configure_git
+    clone_repositories
     install_nerdfonts
     zsh_configurations
     tmux_configurations
