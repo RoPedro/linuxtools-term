@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./apt_packages.sh
+source ./applications/apt_packages.sh
 source ./utils.sh
 
 main()
