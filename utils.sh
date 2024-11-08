@@ -154,11 +154,10 @@ tmux_configurations()
 
     if [ -f ~/.tmux.conf ]; then
         echo "tmux.conf already exists. copying files"
-        cat ~/linuxtools/.tmux.conf >> ~/.tmux.conf
+        cat ~/linuxtools/dotfiles/.tmux.conf >> ~/.tmux.conf
     else
         echo "Creating .tmux.conf"
-        touch ~/.tmux.conf
-        cat ~/linuxtools/.tmux.conf >> ~/.tmux.conf
+        mv ~/linuxtools/dotfiles/.tmux.conf ~
     fi
 }
 
@@ -167,11 +166,10 @@ p10k_configuration()
     echo "Configuring p10k..."
     if [ -f ~/.p10k.zsh ]; then
         echo "p10.zsh already exists. copying files"
-        cat ~/linuxtools/.p10k.zsh >> ~/.p10k.zsh
+        cat ~/linuxtools/dotfiles/.p10k.zsh >> ~/.p10k.zsh
     else
-        echo "Creating .tmux.conf"
-        touch ~/.p10k.zsh
-        cat ~/linuxtools/.p10k.zsh >> ~/.p10k.zsh
+        echo "Creating .p10k.zsh"
+        mv ~/linuxtools/dotfiles/.p10k.zsh ~
     fi
 
     # Sources p10k.zsh
