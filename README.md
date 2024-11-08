@@ -15,7 +15,7 @@ to upate your system.
 
 Now git clone linux tools and inside the repository run:
 ```bash
-linuxtools/.zsh_config.sh
+.zsh_config.sh
 ```
 to install zsh and change the default bash.
 
@@ -31,7 +31,7 @@ The default shell is zsh using powerlevel10k to give a nice theme, [powerlevel10
 This script also comes with zsh-autosuggestions, a nice autocomplete tool that fetches from the shell history.
 
 ## Packages
-Packages are located in `linuxtools/applications` directory, as of now, it only install terminal tools, since the script is tailored for Microsoft WSL2.
+Packages are located in `/applications` directory, as of now, it only install terminal tools, since the script is tailored for Microsoft WSL2.
 
 ## Dotfiles
 The script contains opinionated dotfiles for configurations located in `linuxtools/dotfiles`, continue reading for further information on what's added and changed.
