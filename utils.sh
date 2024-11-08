@@ -144,12 +144,12 @@ zsh_configurations()
     # ------ TERMINAL KEYBINDINGS ------ #
     # Creates zsh config directory
     if [[ ! -d ~/usr/share/zsh ]]; then
-        mkdir ~/usr/share/zsh
+        sudo mkdir ~/usr/share/zsh
     fi
 
     # Moves the keybindings dotfile
     if [[ -f ~/linuxtools/dotfiles/zsh-keybindings ]]; then
-        mv ~/linuxtools/dotfiles/zsh-keybindings ~/usr/share/zsh/
+        sudo mv ~/linuxtools/dotfiles/zsh-keybindings ~/usr/share/zsh/
     else
         echo "Source file not found."
     fi
