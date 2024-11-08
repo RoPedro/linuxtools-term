@@ -12,6 +12,7 @@ Still a work in progress, but as of now, first run:
 sudo apt update && sudo apt upgrade
 ```
 to upate your system.
+
 Now git clone linux tools and inside the repository run:
 ```bash
 linuxtools/.zsh_config.sh
@@ -19,12 +20,14 @@ linuxtools/.zsh_config.sh
 to install zsh and change the default bash.
 
 **If running on WSL2, close the terminal and open again to simulate a logout, if that doesn't work, on a admin powershell, run `wsl --shutdown` and open it again**
+
 **In native Linux you can just logout and login**
-Now, run `linuxtools/.configure.sh`, eventually, it will prompt for your git user and email, after that, it's safe to let the script finish.
+Now, run `.configure.sh`, eventually, it will prompt for your git user and email, after that, it's safe to let the script finish.
 Don't forget to run: `source ~/.zshrc` after installation or reopening your terminal, also, use a nerd font like [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md)to render your terminal since [powerlevel10k](https://github.com/romkatv/powerlevel10k) is installed.
 
 ## Shell
 The default shell is zsh using powerlevel10k to give a nice theme, [powerlevel10k](https://github.com/romkatv/powerlevel10k) is modular enough so you can reconfigure the theme without breaking `.zshrc`, just run `p10k configure` if you don't like the default.
+
 This script also comes with zsh-autosuggestions, a nice autocomplete tool that fetches from the shell history.
 
 ## Packages
@@ -40,7 +43,7 @@ One of the installed packages is [Neovim](https://github.com/neovim/neovim) (PPA
 Tmux is possibly the most popular terminal multiplexer out there (it's literally in it's name). Here, the dotfiles make some interesting changes to make it Vim-like. First, the **Leader** key is now `CTRL + s` instead of `CTRL + b`, and to change panes we are now using `Leader + h/j/k/l(Left, down, up, right)`, also, if you install new plugins, you can now press `Leader + r` to reload tmux. Credits to this [typecraft](https://youtu.be/H70lULWJeig) video for some aspects of the configuration.
 
 ## LazyGit
-Typing commands are boring and sometimes can be automated by a nice TUI, that's what [LazyGit](https://github.com/jesseduffield/lazygit) does, Nothing changed here, but it's installed, so have fun and make sure to check their documentation and cheat sheet for enhanced productivity.
+Typing commands are boring and sometimes can be automated by a nice TUI, that's what [LazyGit](https://github.com/jesseduffield/lazygit) does, nothing changed here, but it's installed, so have fun and make sure to check their documentation and cheat sheet for enhanced productivity.
 
 ## Programming languages
 1. C (build-essential).
