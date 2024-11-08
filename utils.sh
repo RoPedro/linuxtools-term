@@ -147,10 +147,10 @@ zsh_configurations()
 
     # Sourcing keybindings
     cat << 'EOF' >> ~/.zshrc
-    if [[ -e ~/usr/share/zsh/zsh-keybindings ]]; then
-        source ~/usr/share/zsh/zsh-keybindings
-    fi
-    EOF
+if [[ -e ~/usr/share/zsh/zsh-keybindings ]]; then
+    source ~/usr/share/zsh/zsh-keybindings
+fi
+EOF
 
     echo "Zsh configurations complete."
 }
