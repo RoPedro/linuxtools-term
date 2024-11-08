@@ -34,7 +34,7 @@ This script also comes with zsh-autosuggestions, a nice autocomplete tool that f
 Packages are located in `/applications` directory, as of now, it only install terminal tools, since the script is tailored for Microsoft WSL2.
 
 ## Dotfiles
-The script contains opinionated dotfiles for configurations located in `linuxtools/dotfiles`, continue reading for further information on what's added and changed.
+The script contains opinionated dotfiles for configurations located in `/dotfiles`, continue reading for further information on what's added and changed.
 
 ## Neovim (LazyVim)
 One of the installed packages is [Neovim](https://github.com/neovim/neovim) (PPA unstable version), this means that we can install [Lua](https://www.lua.org/) plugins, but instead of managing plugins from scratch, we are taking for granted [LazyVim](https://github.com/LazyVim/LazyVim) and installing it for a powerful and visually appealing Vim editor, no changes made, default installation is enough for my case, make sure to check their documentation to see what's new.
