@@ -22,7 +22,7 @@ to install zsh and change the default bash.
 **If running on WSL2, close the terminal and open again to simulate a logout, if that doesn't work, on a admin powershell, run `wsl --shutdown` and open it again**
 
 **In native Linux you can just logout and login**
-Now, run `.configure.sh`, eventually, it will prompt for your git user and email, after that, it's safe to let the script finish.
+Now, run `./configure.sh`, eventually, it will prompt for your git user and email, after that, it's safe to let the script finish.
 Don't forget to run: `source ~/.zshrc` after installation or reopening your terminal, also, use a nerd font like [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md)to render your terminal since [powerlevel10k](https://github.com/romkatv/powerlevel10k) is installed.
 
 ## Shell
@@ -52,17 +52,17 @@ Typing commands are boring and sometimes can be automated by a nice TUI, that's 
 Instead of using the default unix `cat`, we have [bat/batcat](https://github.com/sharkdp/bat) installed, same thing for [eza](https://github.com/eza-community/eza), taking the place of `ls`
 
 ## Aliases
-Currently, the main aliases are:
+New aliases were added:
 
-- cat translates to bat;
-- ls translates to eza;
-- updateUpgrade translates to `sudo apt update && sudo apt upgrade`.
+- `cat` translates to `bat`;
+- `ls` translates to `eza`;
+- `updateUpgrade` translates to `sudo apt update && sudo apt upgrade`.
 
 ## Terminal keybindings
 As of now, the only keybinding is `CTRL + backspace` to delete word by word.
 
 ## New features
-This script is not definitive and I'm definitely updating, don't be surprised if you enter access the repository and there's a major change, but for now, I have a (kinda) organized roadmap for what I want on my workflow:
+This script is not definitive and I'm definitely updating, don't be surprised if you enter access the repository and there's a major change, but for now, I have a (kinda) organized roadmap for what's coming:
 
 1. More terminal keybindings inspired by Manjaro;
 2. asdf version manager;
