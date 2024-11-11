@@ -59,12 +59,12 @@ New aliases were added:
 - `updateUpgrade` translates to `sudo apt update && sudo apt upgrade`.
 
 ## Terminal keybindings
-As of now, the only keybinding is `CTRL + backspace` to delete word by word.
+There's a multitude of new keybindings to make navigating through terminal text more Windows-Like, for those used with CMD and PowerShell. The keybindings are listed at `/dotfiles/zsh-keybindings` and they're sourced on `.zshrc`
 
 ## New features
 This script is not definitive and I'm definitely updating, don't be surprised if you enter access the repository and there's a major change, but for now, I have a (kinda) organized roadmap for what's coming:
 
-1. More terminal keybindings inspired by Manjaro;
+1. ~~More terminal keybindings inspired by Manjaro~~;
 2. asdf version manager;
 3. More programming languages (C++, Python, Ruby and Javascript);
 4. Full support for native Linux installations with packages like VSCode, Bitwarden and discord (While maintaining WSL2 support).
