@@ -141,8 +141,25 @@ zsh_configurations()
         echo "Neither 'bat' nor 'batcat' found, skipping..."
     fi
 
-    # Adding keybindings
-    echo "bindkey '^H' backward-kill-word" >> ~/.zshrc
+    # ------ TERMINAL KEYBINDINGS ------ #
+    # Creates zsh config directory
+    if [[ ! -d /usr/share/zsh ]]; then
+        sudo mkdir /usr/share/zsh
+    fi
+
+    # Moves the keybindings dotfile
+    if [[ -f ~/linuxtools/dotfiles/zsh-keybindings ]]; then
+        sudo mv ~/linuxtools/dotfiles/zsh-keybindings /usr/share/zsh/
+    else
+        echo "Source file not found."
+    fi
+
+    # Sourcing keybindings
+    cat << 'EOF' >> ~/.zshrc
+if [[ -e /usr/share/zsh/zsh-keybindings ]]; then
+    source /usr/share/zsh/zsh-keybindings
+fi
+EOF
 
     echo "Zsh configurations complete."
 }
