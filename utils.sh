@@ -28,7 +28,7 @@ asdf_configure() {                       # Installing asdf
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.1
     echo ". $HOME/.asdf/asdf.sh" >>~/.zshrc
 
-    source ~/.zshrc
+    source ~/.zshrc >/dev/null 2>&1
   else
     echo "asdf already installed, skipping..."
   fi
@@ -40,6 +40,7 @@ asdf_configure() {                       # Installing asdf
   )
 
   for language in "${asdf_languages[@]}"; do
+    asdf plugin-add $language
     asdf install $language latest
   done
 }
