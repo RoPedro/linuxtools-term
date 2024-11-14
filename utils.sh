@@ -42,6 +42,7 @@ asdf_configure() {                       # Installing asdf
   for language in "${asdf_languages[@]}"; do
     asdf plugin-add $language
     asdf install $language latest
+    asdf global $language latest
   done
 }
 
