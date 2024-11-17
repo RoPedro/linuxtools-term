@@ -6,11 +6,15 @@ packages=(
   "tmux"
   "build-essential"
   "zlib1g-dev"
+  "libbz2-dev"
   "libffi-dev"
   "libyaml-dev"
+  "libssl-dev"
+  "libreadline-dev"
+  "libncurses5-dev"
+  "libncursesw5-dev"
   "make"
   "ripgrep"
   "gh"
   "cargo"
 )
-
