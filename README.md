@@ -45,8 +45,14 @@ Tmux is possibly the most popular terminal multiplexer out there (it's literally
 ## LazyGit
 Typing commands are boring and sometimes can be automated by a nice TUI, that's what [LazyGit](https://github.com/jesseduffield/lazygit) does, nothing changed here, but it's installed, so have fun and make sure to check their documentation and cheat sheet for enhanced productivity.
 
+## ASDF
+ASDF core is installed alongside the main languages I am interested in. The installed languages are listed below and are always installed on their latest version available when the script is run, you can always install different versions if you need.
+
 ## Programming languages
-1. C (build-essential).
+1. C (build-essential);
+2. NodeJS;
+3. Python;
+4. Ruby.
 
 ## Bat and Eza
 Instead of using the default unix `cat`, we have [bat/batcat](https://github.com/sharkdp/bat) installed, same thing for [eza](https://github.com/eza-community/eza), taking the place of `ls`
@@ -65,6 +71,6 @@ There's a multitude of new keybindings to make navigating through terminal text 
 This script is not definitive and I'm definitely updating, don't be surprised if you enter access the repository and there's a major change, but for now, I have a (kinda) organized roadmap for what's coming:
 
 1. ~~More terminal keybindings inspired by Manjaro~~;
-2. asdf version manager;
+2. ~~asdf version manager~~;
 3. More programming languages (C++, Python, Ruby and Javascript);
 4. Full support for native Linux installations with packages like VSCode, Bitwarden and discord (While maintaining WSL2 support).
