@@ -72,5 +72,5 @@ This script is not definitive and I'm definitely updating, don't be surprised if
 
 1. ~~More terminal keybindings inspired by Manjaro~~;
 2. ~~asdf version manager~~;
-3. More programming languages (C++, Python, Ruby and Javascript);
+3. ~~More programming languages (C++, Python, Ruby and Javascript)~~;
 4. Full support for native Linux installations with packages like VSCode, Bitwarden and discord (While maintaining WSL2 support).
