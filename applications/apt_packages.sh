@@ -1,5 +1,5 @@
-"wget"
 packages=(
+  "wget"
   "curl"
   "vim"
   "neovim"
