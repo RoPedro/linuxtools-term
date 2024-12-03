@@ -7,14 +7,17 @@ install_packages() {
   sudo apt update -y
 
   # Install packages with error handling
-  echo "Installing packages..."
+  echo "Installing APT packages..."
   for package in "${packages[@]}"; do
     sudo apt install -y $package || {
       echo "Failed to install $package, skipping..."
     }
   done
 
-  echo "Installed packages: ${packages[*]}"
+  echo "Installed APT packages: ${packages[*]}"
+
+  echo "Installing non apt packages..."
+  ./applications/non_apt_packages.sh
 
   echo "Installing cargo packages..."
   cargo install eza
