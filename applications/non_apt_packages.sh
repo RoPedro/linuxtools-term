@@ -6,6 +6,6 @@ git clone https://github.com/aristocratos/btop.git
 cd btop
 
 make
-make install
+sudo make install
 
 cd ..
