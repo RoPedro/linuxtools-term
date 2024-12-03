@@ -4,8 +4,8 @@ source ./applications/apt_packages.sh
 source ./utils.sh
 
 main() {
-  install_packages
   check_configure_git
+  install_packages
   asdf_configure
   clone_repositories
   install_nerdfonts
@@ -13,7 +13,7 @@ main() {
   tmux_configurations
   p10k_configuration
 
-  source ~/.zshrc
+  source ~/.zshrc &>/dev/null
 
   echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
 }
