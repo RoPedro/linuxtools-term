@@ -155,26 +155,6 @@ zsh_configurations() {
   echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
   echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
 
-  # Adding aliases
-  echo "Adding aliases..."
-  echo "alias updateUpgrade='sudo apt update && sudo apt upgrade -y'" >>~/.zshrc
-
-  if ! type "eza" >/dev/null 2>&1; then
-    echo "Alias 'eza' not available, skipping..."
-  else
-    echo "alias ls='eza'" >>~/.zshrc
-  fi
-
-  if type "bat" >/dev/null 2>&1; then
-    echo "Using 'bat' as replacement for 'cat'..."
-    echo "alias cat='bat'" >>~/.zshrc
-  elif type "batcat" >/dev/null 2>&1; then
-    echo "Using 'batcat' as replacement for 'cat'..."
-    echo "alias cat='batcat'" >>~/.zshrc
-  else
-    echo "Neither 'bat' nor 'batcat' found, skipping..."
-  fi
-
   # ------ TERMINAL KEYBINDINGS ------ #
   # Creates zsh config directory
   if [[ ! -d /usr/share/zsh ]]; then
@@ -194,6 +174,28 @@ if [[ -e /usr/share/zsh/zsh-keybindings ]]; then
     source /usr/share/zsh/zsh-keybindings
 fi
 EOF
+
+  # Adding aliases
+  echo "Adding aliases..."
+  echo "alias updateUpgrade='sudo apt update && sudo apt upgrade -y'" >>~/.zshrc
+
+  # ls to eza
+  if ! type "eza" >/dev/null 2>&1; then
+    echo "Alias 'eza' not available, skipping..."
+  else
+    echo "alias ls='eza'" >>~/.zshrc
+  fi
+
+  # cat to batcat
+  if type "bat" >/dev/null 2>&1; then
+    echo "Using 'bat' as replacement for 'cat'..."
+    echo "alias cat='bat'" >>~/.zshrc
+  elif type "batcat" >/dev/null 2>&1; then
+    echo "Using 'batcat' as replacement for 'cat'..."
+    echo "alias cat='batcat'" >>~/.zshrc
+  else
+    echo "Neither 'bat' nor 'batcat' found, skipping..."
+  fi
 
   echo "Zsh configurations complete."
 }
