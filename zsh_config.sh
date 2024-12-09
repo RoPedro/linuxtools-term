@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Zsh
-sudo apt update
+sudo apt update -y
 sudo apt install -y zsh
 
 chmod +x ~/linuxtools/configure.sh
