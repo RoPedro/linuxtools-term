@@ -204,6 +204,10 @@ EOF
 tmux_configurations() {
   echo "Configuring Tmux..."
 
+  # Installing theme
+  mkdir -p ~/.config/tmux/plugins/catppuccin
+  git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+
   if [ -f ~/.tmux.conf ]; then
     echo "tmux.conf already exists. copying files"
     cat ~/linuxtools/dotfiles/.tmux.conf >>~/.tmux.conf
