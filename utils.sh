@@ -26,7 +26,7 @@ install_packages() {
   sudo apt install bat -y
 
   if [[ "$display_type" == "x11" || "$display_type" == "wayland" ]]; then
-    source ./applications/desktop
+    source ./applications/desktop/apt_pkgs.sh
 
     echo "Installing GUI apt pkgs..."
     for gui_package in "${gui_packages[@]}"; do
@@ -34,12 +34,12 @@ install_packages() {
         echo "Failed to install $gui_package, skipping..."
       }
     done
+
+    echo "Installing GUI non apt packages..."
+    ./applications/desktop/non_apt_packages.sh
   else
     echo "Headless installation, skipping GUI packages..."
   fi
-
-  echo "Installing GUI non apt packages..."
-  ./applications/desktop/non_apt_packages.sh
 }
 
 asdf_configure() {
