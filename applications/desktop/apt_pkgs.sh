@@ -1,0 +1,10 @@
+gui_packages=(
+  "terminator"
+  "code"
+  "discord"
+  "steam"
+  "gnome-tweaks"
+  "dconf-editor"
+  "krita"
+  "shotcut"
+)
