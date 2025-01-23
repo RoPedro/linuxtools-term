@@ -1,5 +1,7 @@
 # Install all packages
 install_packages() {
+  display_type=$(loginctl show-session "$(loginctl | grep "$(whoami)" | awk '{print $1}')" -p Type --value)
+
   # Adding Neovim PPA
   sudo add-apt-repository ppa:neovim-ppa/unstable -y
   echo "Adding Neovim PPA..."
@@ -7,25 +9,41 @@ install_packages() {
   sudo apt update -y
 
   # Install packages with error handling
-  echo "Installing APT packages..."
+  echo "Installing terminal apt pkgs..."
   for package in "${packages[@]}"; do
     sudo apt install -y $package || {
       echo "Failed to install $package, skipping..."
     }
   done
 
-  echo "Installed APT packages: ${packages[*]}"
+  echo "Installed pkgs: ${packages[*]}"
 
-  echo "Installing non apt packages..."
-  ./applications/non_apt_packages.sh
+  echo "Installing terminal non apt packages..."
+  ./applications/headless/non_apt_packages.sh
 
   echo "Installing cargo packages..."
   cargo install eza
   sudo apt install bat -y
+
+  if [[ "$display_type" == "x11" || "$display_type" == "wayland" ]]; then
+    source ./applications/desktop
+
+    echo "Installing GUI apt pkgs..."
+    for gui_package in "${gui_packages[@]}"; do
+      sudo apt install -y $gui_package || {
+        echo "Failed to install $gui_package, skipping..."
+      }
+    done
+  else
+    echo "Headless installation, skipping GUI packages..."
+  fi
+
+  echo "Installing GUI non apt packages..."
+  ./applications/desktop/non_apt_packages.sh
 }
 
-asdf_configure() {                       # Installing asdf
-  if ! command -v asdf &>/dev/null; then # Checks if asdf is available
+asdf_configure() {
+  if ! command -v asdf &>/dev/null; then
     echo "Installing asdf..."
 
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.1
@@ -215,6 +233,18 @@ tmux_configurations() {
     echo "Creating .tmux.conf"
     mv ~/linuxtools/dotfiles/.tmux.conf ~
   fi
+}
+
+terminator_config() {
+  echo "Configuring Terminator..."
+
+  TERMINATOR_DIR=$HOME/.config/terminator
+
+  if [ ! -d "$TERMINATOR_DIR" ]; then
+    mkdir "$TERMINATOR_DIR"
+  fi
+
+  cp ~/linuxtools/dotfiles/terminator/config "$TERMINATOR_DIR"
 }
 
 p10k_configuration() {
