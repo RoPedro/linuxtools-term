@@ -244,7 +244,11 @@ terminator_config() {
     mkdir "$TERMINATOR_DIR"
   fi
 
-  cp ~/linuxtools/dotfiles/terminator/config "$TERMINATOR_DIR"
+  if [ ! -f "$TERMINATOR_DIR/config" ]; then
+    cp ~/linuxtools/dotfiles/terminator/config "$TERMINATOR_DIR"
+  else
+    cat ~/linuxtools/dotfiles/terminator/config >"$TERMINATOR_DIR/config"
+  fi
 }
 
 p10k_configuration() {
