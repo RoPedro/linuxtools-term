@@ -1,4 +1,5 @@
 gui_packages=(
+  "ffmpeg"
   "terminator"
   "code"
   "discord"
@@ -6,5 +7,6 @@ gui_packages=(
   "gnome-tweaks"
   "dconf-editor"
   "krita"
+  "obs-studio"
   "shotcut"
 )
