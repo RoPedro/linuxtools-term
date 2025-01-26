@@ -1,6 +1,12 @@
-#!bin/bash
+#!/bin/bash
 
-# Vivaldi browser
-wget https://downloads.vivaldi.com/stable/vivaldi-stable_7.0.3495.29-1_amd64.deb
+echo "Installing Vivaldi"
+curl -o /tmp/vivaldi-stable_7.0.3495.29-1_amd64.deb https://downloads.vivaldi.com/stable/vivaldi-stable_7.0.3495.29-1_amd64.deb
+sudo dpkg -i /tmp/vivaldi-stable_7.0.3495.29-1_amd64.deb
 
-sudo dpkg -i vivaldi-stable_7.0.3495.29-1_amd64.deb
+# Upscayl
+echo "Installing Upscayl"
+curl -o /tmp/upscayl-2.15.0-linux.deb https://github.com/upscayl/upscayl/releases/download/v2.15.0/upscayl-2.15.0-linux.deb
+sudo dpkg -i /tmp/upscayl-2.15.0-linux.deb
+
+sudo apt install -f
