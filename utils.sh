@@ -27,6 +27,9 @@ install_packages() {
 
   if [[ "$display_type" == "x11" || "$display_type" == "wayland" ]]; then
     source ./applications/desktop/apt_pkgs.sh
+    source ./applications/desktop/ppa.sh
+
+    ./applications/desktop/ppa.sh # Gets ppa's
 
     echo "Installing GUI apt pkgs..."
     for gui_package in "${gui_packages[@]}"; do
