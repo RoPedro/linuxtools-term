@@ -1,4 +1,5 @@
 gui_packages=(
+  "fastfetch"
   "ffmpeg"
   "terminator"
   "code"
