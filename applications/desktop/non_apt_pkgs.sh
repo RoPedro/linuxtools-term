@@ -10,3 +10,12 @@ curl -o /tmp/upscayl-2.15.0-linux.deb https://github.com/upscayl/upscayl/release
 sudo dpkg -i /tmp/upscayl-2.15.0-linux.deb
 
 sudo apt install -f
+
+# Liquorix Kernel
+echo "Installing Liquorix Kernel..."
+
+if curl -s 'https://liquorix.net/install-liquorix.sh' | sudo bash; then
+  echo "Liquorix Kernel installed successfully"
+else
+  echo "Failed to install Liquorix Kernel"
+fi
