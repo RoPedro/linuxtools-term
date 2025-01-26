@@ -11,6 +11,7 @@ main() {
   install_nerdfonts
   zsh_configurations
   tmux_configurations
+  terminator_config
   p10k_configuration
 
   echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
