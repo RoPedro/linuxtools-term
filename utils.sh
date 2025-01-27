@@ -23,6 +23,7 @@ install_packages() {
 
   if [[ "$display_type" == "x11" || "$display_type" == "wayland" ]]; then
     source ./applications/desktop/apt_pkgs.sh
+    source ./applications/desktop/non_apt_pkgs.sh.sh
     source ./applications/desktop/ppa.sh
 
     ./applications/desktop/ppa.sh # Gets ppa's
@@ -35,7 +36,7 @@ install_packages() {
     done
 
     echo "Installing GUI non apt packages..."
-    ./applications/desktop/non_apt_packages.sh
+    ./applications/desktop/non_apt_pkgs.sh
   else
     echo "Headless installation, skipping GUI packages..."
   fi
