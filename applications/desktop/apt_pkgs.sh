@@ -2,6 +2,7 @@ gui_packages=(
   "fastfetch"
   "ffmpeg"
   "terminator"
+  "vlc"
   "code"
   "discord"
   "steam"
