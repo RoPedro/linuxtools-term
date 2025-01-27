@@ -2,10 +2,6 @@
 install_packages() {
   display_type=$(loginctl show-session "$(loginctl | grep "$(whoami)" | awk '{print $1}')" -p Type --value)
 
-  # Adding Neovim PPA
-  sudo add-apt-repository ppa:neovim-ppa/unstable -y
-  echo "Adding Neovim PPA..."
-
   sudo apt update -y
 
   # Install packages with error handling
