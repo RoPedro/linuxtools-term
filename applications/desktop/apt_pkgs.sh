@@ -1,5 +1,5 @@
 gui_packages=(
-  "fastfetch"
+  "neofetch"
   "ffmpeg"
   "terminator"
   "vlc"
