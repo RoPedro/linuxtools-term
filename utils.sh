@@ -63,11 +63,11 @@ asdf_configure() {
     "python"
   )
 
-  for language in "${asdf_languages[@]}"; do
-    asdf plugin-add $language
-    asdf install $language latest
-    asdf global $language latest
-  done
+  #for language in "${asdf_languages[@]}"; do
+  #  asdf plugin-add $language
+  #  asdf install $language latest
+  #  asdf global $language latest
+  #done
 }
 
 # Clones repositories
@@ -244,7 +244,7 @@ terminator_config() {
   TERMINATOR_DIR=$HOME/.config/terminator
 
   if [ ! -d "$TERMINATOR_DIR" ]; then
-    mkdir "$TERMINATOR_DIR"
+    mkdir -r "$TERMINATOR_DIR"
   fi
 
   if [ ! -f "$TERMINATOR_DIR/config" ]; then
