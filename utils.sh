@@ -241,11 +241,13 @@ terminator_config() {
   TERMINATOR_DIR=$HOME/.config/terminator
 
   if [ ! -d "$TERMINATOR_DIR" ]; then
-    mkdir -f "$TERMINATOR_DIR"
+    mkdir "$TERMINATOR_DIR"
   fi
 
+  touch "$TERMINATOR_DIR/config"
+
   if [ ! -f "$TERMINATOR_DIR/config" ]; then
-    cp ~/linuxtools/dotfiles/terminator/config "$TERMINATOR_DIR"
+    echo "ERORR: terminator config file not present."
   else
     cat ~/linuxtools/dotfiles/terminator/config >"$TERMINATOR_DIR/config"
   fi
