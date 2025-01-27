@@ -241,7 +241,7 @@ terminator_config() {
   TERMINATOR_DIR=$HOME/.config/terminator
 
   if [ ! -d "$TERMINATOR_DIR" ]; then
-    mkdir -r "$TERMINATOR_DIR"
+    mkdir -f "$TERMINATOR_DIR"
   fi
 
   if [ ! -f "$TERMINATOR_DIR/config" ]; then
