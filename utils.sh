@@ -46,6 +46,10 @@ install_packages() {
   fi
 }
 
+btop_configure() {
+  cp ~/linuxtools/dotfiles/btop.conf ~/.config/btop/
+}
+
 asdf_configure() {
   if ! command -v asdf &>/dev/null; then
     echo "Installing asdf..."
@@ -173,32 +177,14 @@ zsh_configurations() {
   # Adding path
   echo 'export PATH="$HOME/.cargo/bin:$PATH"' >>~/.zshrc
 
+  cp -afv ./dotfiles/shell ~/.zsh
+
+  echo "Adding themes and aliases..."
   # Powerlevel10k and Zsh-autosuggestions
   echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
   echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
+  echo 'source ~/.zsh/rc' >>~/.zshrc
   echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
-
-  # Adding aliases
-  echo "Adding aliases..."
-  echo "alias updateUpgrade='sudo apt update && sudo apt upgrade -y'" >>~/.zshrc
-
-  # ls to eza
-  if ! type "eza" >/dev/null 2>&1; then
-    echo "Alias 'eza' not available, skipping..."
-  else
-    echo "alias ls='eza'" >>~/.zshrc
-  fi
-
-  # cat to batcat
-  if type "bat" >/dev/null 2>&1; then
-    echo "Using 'bat' as replacement for 'cat'..."
-    echo "alias cat='bat'" >>~/.zshrc
-  elif type "batcat" >/dev/null 2>&1; then
-    echo "Using 'batcat' as replacement for 'cat'..."
-    echo "alias cat='batcat'" >>~/.zshrc
-  else
-    echo "Neither 'bat' nor 'batcat' found, skipping..."
-  fi
 
   # ------ TERMINAL KEYBINDINGS ------ #
   # Creates zsh config directory
