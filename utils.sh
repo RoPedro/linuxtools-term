@@ -172,6 +172,7 @@ zsh_configurations() {
   # Powerlevel10k and Zsh-autosuggestions
   echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
   echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
+  echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
 
   # Adding aliases
   echo "Adding aliases..."
