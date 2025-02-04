@@ -2,6 +2,10 @@
 install_packages() {
   display_type=$(loginctl show-session "$(loginctl | grep "$(whoami)" | awk '{print $1}')" -p Type --value)
 
+  # Rust
+  source ./applications/headless/rustup.sh
+  ./applications/headless/rustup.sh
+
   sudo apt-get update -y
 
   # Install packages with error handling
