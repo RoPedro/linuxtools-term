@@ -17,8 +17,8 @@ WORKDIR /home/testuser
 
 # Gets the linuxtools repo
 RUN git clone https://github.com/RoPedro/linuxtools.git \
-  && cd linuxtools && ./zsh_config.sh \
-  && exec zsh
+  && cd linuxtools && git checkout alpha2/desktopUpdate \
+  ./zsh_config.sh
 
 # Starts bash for debugging
 CMD ["bash"]
