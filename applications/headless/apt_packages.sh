@@ -8,6 +8,7 @@ packages=(
   "podman"
   "vim"
   "neovim"
+  "zsh-syntax-highlighting"
   "tmux"
   "btop"
   "ssh"
@@ -33,5 +34,4 @@ packages=(
   "make"
   "ripgrep"
   "gh"
-  "cargo"
 )
