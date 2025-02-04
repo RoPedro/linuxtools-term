@@ -2,12 +2,12 @@
 install_packages() {
   display_type=$(loginctl show-session "$(loginctl | grep "$(whoami)" | awk '{print $1}')" -p Type --value)
 
-  sudo apt update -y
+  sudo apt-get update -y
 
   # Install packages with error handling
   echo "Installing terminal apt pkgs..."
   for package in "${packages[@]}"; do
-    sudo apt install -y $package || {
+    sudo apt-get install -y $package || {
       echo "Failed to install $package, skipping..."
     }
   done
@@ -19,7 +19,7 @@ install_packages() {
 
   echo "Installing cargo packages..."
   cargo install eza
-  sudo apt install bat -y
+  sudo apt-get install bat -y
 
   if [[ "$display_type" == "x11" || "$display_type" == "wayland" ]]; then
     source ./applications/desktop/apt_pkgs.sh
@@ -30,7 +30,7 @@ install_packages() {
 
     echo "Installing GUI apt pkgs..."
     for gui_package in "${gui_packages[@]}"; do
-      sudo apt install -y $gui_package || {
+      sudo apt-get install -y $gui_package || {
         echo "Failed to install $gui_package, skipping..."
       }
     done
