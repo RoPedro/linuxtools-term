@@ -177,13 +177,13 @@ zsh_configurations() {
   # Adding path
   echo 'export PATH="$HOME/.cargo/bin:$PATH"' >>~/.zshrc
 
-  cp -afv ./dotfiles/shell ~/.zsh
+  cp -afv ~/linuxtools/dotfiles/shell $HOME/.zsh
 
   echo "Adding themes and aliases..."
   # Powerlevel10k and Zsh-autosuggestions
   echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
   echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
-  echo 'source ~/.zsh/rc' >>~/.zshrc
+  echo 'source ~/.zsh/shell/rc' >>~/.zshrc
   echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
 
   # ------ TERMINAL KEYBINDINGS ------ #
