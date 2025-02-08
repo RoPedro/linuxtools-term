@@ -9,7 +9,7 @@ alias nv='nvim'
 alias lzg='lazygit'
 alias bat='batcat'
 alias catp='batcat -p'
-alias update='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
+alias uptupg='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
 alias ncdu='ncdu --color dark'
 
 
