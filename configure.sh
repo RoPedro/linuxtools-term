@@ -1,5 +1,7 @@
 #!/bin/bash
 
+LOG_FILE="main.log"
+
 source ./applications/headless/apt_packages.sh
 source ./utils.sh
 
@@ -17,4 +19,4 @@ main() {
   echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
 }
 
-main
+main 2>&1 | tee "$LOG_FILE"
