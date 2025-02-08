@@ -13,6 +13,7 @@ main() {
   install_nerdfonts
   zsh_configurations
   tmux_configurations
+  nvim_config
   terminator_config
   p10k_configuration
 
