@@ -228,13 +228,15 @@ tmux_configurations() {
 
 nvim_config() {
   THEME_DIR=$HOME/.config/nvim/lua/plugins/
+  SELF_PATH=$HOME/linuxtools
 
-  cp -v $THEME_DIR/catppuccin.lua $HOME/.config/nvim/lua/plugins/
+  cp -v $SELF_PATH/dotfiles/nvim/catppuccin.lua $HOME/.config/nvim/lua/plugins/
 
   if [ ! -f $THEME_DIR/catppuccin.lua ]; then
     echo "Neovim theme was not installed."
   else
     echo "Neovim theme installed successfully."
+  fi
 }
 
 terminator_config() {
