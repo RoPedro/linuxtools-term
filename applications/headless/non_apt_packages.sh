@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "no non-apt yet"
+cargo install eza

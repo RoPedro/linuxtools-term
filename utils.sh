@@ -2,11 +2,11 @@
 install_packages() {
   display_type=$(loginctl show-session "$(loginctl | grep "$(whoami)" | awk '{print $1}')" -p Type --value)
 
+  sudo apt-get update -y
+
   # Rust
   source ./applications/headless/rustup.sh
   ./applications/headless/rustup.sh
-
-  sudo apt-get update -y
 
   # Install packages with error handling
   echo "Installing terminal apt pkgs..."
@@ -21,13 +21,9 @@ install_packages() {
   echo "Installing terminal non apt packages..."
   ./applications/headless/non_apt_packages.sh
 
-  echo "Installing cargo packages..."
-  cargo install eza
-  sudo apt-get install bat -y
-
   if [[ "$display_type" == "x11" || "$display_type" == "wayland" ]]; then
     source ./applications/desktop/apt_pkgs.sh
-    source ./applications/desktop/non_apt_pkgs.sh.sh
+    source ./applications/desktop/non_apt_pkgs.sh
     source ./applications/desktop/ppa.sh
 
     ./applications/desktop/ppa.sh # Gets ppa's
@@ -57,7 +53,7 @@ asdf_configure() {
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.1
     echo ". $HOME/.asdf/asdf.sh" >>~/.zshrc
 
-    source ~/.zshrc >/dev/null 2>&1
+    . "$HOME/.asdf/asdf.sh"
   else
     echo "asdf already installed, skipping..."
   fi
@@ -86,7 +82,6 @@ clone_repositories() {
       return 1
     }
   fi
-  # Clones zsh-autosuggestions
 
   if [ -d "$HOME/.zsh/zsh-autosuggestions" ]; then
     echo "Zsh-autosuggestions directory already exists. Skipping git clone."
@@ -97,7 +92,6 @@ clone_repositories() {
     }
   fi
 
-  # LazyVim installation
   echo "Installing lazyvim"
   rm -rf "$HOME/.config/nvim" # Remove existing nvim directory before cloning
   git clone https://github.com/LazyVim/starter ~/.config/nvim || {
@@ -106,7 +100,6 @@ clone_repositories() {
   }
   rm -rf ~/.config/nvim/.git
 
-  # lazygit installation
   if ! command -v curl &>/dev/null; then
     echo "CURL NOT INSTALLED, LAZYGIT INSTALLATION CANCELLED."
     return 1
