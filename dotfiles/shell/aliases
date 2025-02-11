@@ -3,6 +3,7 @@ alias ls='eza -lh --group-directories-first --icons=auto'
 alias lsa='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
+alias ncdu='ncdu --color dark'
 
 # Tools
 alias nv='nvim'
@@ -10,6 +11,6 @@ alias lzg='lazygit'
 alias bat='batcat'
 alias catp='batcat -p'
 alias uptupg='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
-alias ncdu='ncdu --color dark'
 
-
+# Others
+alias cl='clear'
