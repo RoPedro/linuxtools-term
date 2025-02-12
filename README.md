@@ -23,11 +23,23 @@ Run the first script to install zsh:
 .zsh_config.sh
 ```
 
-**If running on WSL2, close the terminal and open again to simulate a logout, if that doesn't work, on a admin powershell, run `wsl --shutdown` and open it again**
+**If running on WSL2, close the terminal and open again to simulate a logout, if that doesn't work, on a admin powershell, run `wsl --shutdown` and open it again.**
+In native Linux you can just logout and login.
+After the logout, it's recommended to type 2 in the zsh prompt before proceeding.
 
-**In native Linux you can just logout and login**
-After the logout, it's recommended to type 2 in the zsh prompt before proceeding. Now, run `./configure.sh`, eventually, configure git (If not configured yet), after that, it's safe to let the script finish.
-Don't forget to run: `source ~/.zshrc` after installation or reopening your terminal, also, use a nerd font like [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md)to render your terminal since [powerlevel10k](https://github.com/romkatv/powerlevel10k) is installed.
+Next, run:
+```bash
+./configure.sh
+```
+you'll need sudo privileges and input a usename and email, then you can leave it running.
+
+Lastly, run:
+```bash
+source ~/.zshrc
+```
+to load the new changes.
+
+Additionaly, use a Nerd Font like [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md)to render your terminal since [powerlevel10k](https://github.com/romkatv/powerlevel10k) is installed.
 
 ## Shell
 The default shell is zsh using powerlevel10k to give a nice theme, [powerlevel10k](https://github.com/romkatv/powerlevel10k) is modular enough so you can reconfigure the theme without breaking `.zshrc`, just run `p10k configure` if you don't like the default.
