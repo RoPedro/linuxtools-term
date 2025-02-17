@@ -1,37 +1,59 @@
 # Install all packages
 install_packages() {
-  # Adding Neovim PPA
-  sudo add-apt-repository ppa:neovim-ppa/unstable -y
-  echo "Adding Neovim PPA..."
+  display_type=$(loginctl show-session "$(loginctl | grep "$(whoami)" | awk '{print $1}')" -p Type --value)
 
-  sudo apt update -y
+  sudo apt-get update -y
+
+  # Rust
+  source ./applications/headless/rustup.sh
+  ./applications/headless/rustup.sh
 
   # Install packages with error handling
-  echo "Installing APT packages..."
+  echo "Installing terminal apt pkgs..."
   for package in "${packages[@]}"; do
-    sudo apt install -y $package || {
+    sudo apt-get install -y $package || {
       echo "Failed to install $package, skipping..."
     }
   done
 
-  echo "Installed APT packages: ${packages[*]}"
+  echo "Installed pkgs: ${packages[*]}"
 
-  echo "Installing non apt packages..."
-  ./applications/non_apt_packages.sh
+  echo "Installing terminal non apt packages..."
+  ./applications/headless/non_apt_packages.sh
 
-  echo "Installing cargo packages..."
-  cargo install eza
-  sudo apt install bat -y
+  if [[ "$display_type" == "x11" || "$display_type" == "wayland" ]]; then
+    source ./applications/desktop/apt_pkgs.sh
+    source ./applications/desktop/non_apt_pkgs.sh
+    source ./applications/desktop/ppa.sh
+
+    ./applications/desktop/ppa.sh # Gets ppa's
+
+    echo "Installing GUI apt pkgs..."
+    for gui_package in "${gui_packages[@]}"; do
+      sudo apt-get install -y $gui_package || {
+        echo "Failed to install $gui_package, skipping..."
+      }
+    done
+
+    echo "Installing GUI non apt packages..."
+    ./applications/desktop/non_apt_pkgs.sh
+  else
+    echo "Headless installation, skipping GUI packages..."
+  fi
 }
 
-asdf_configure() {                       # Installing asdf
-  if ! command -v asdf &>/dev/null; then # Checks if asdf is available
+btop_configure() {
+  cp ~/linuxtools/dotfiles/btop.conf ~/.config/btop/
+}
+
+asdf_configure() {
+  if ! command -v asdf &>/dev/null; then
     echo "Installing asdf..."
 
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.1
     echo ". $HOME/.asdf/asdf.sh" >>~/.zshrc
 
-    source ~/.zshrc >/dev/null 2>&1
+    . "$HOME/.asdf/asdf.sh"
   else
     echo "asdf already installed, skipping..."
   fi
@@ -42,11 +64,11 @@ asdf_configure() {                       # Installing asdf
     "python"
   )
 
-  for language in "${asdf_languages[@]}"; do
-    asdf plugin-add $language
-    asdf install $language latest
-    asdf global $language latest
-  done
+  #for language in "${asdf_languages[@]}"; do
+  #  asdf plugin-add $language
+  #  asdf install $language latest
+  #  asdf global $language latest
+  #done
 }
 
 # Clones repositories
@@ -60,7 +82,6 @@ clone_repositories() {
       return 1
     }
   fi
-  # Clones zsh-autosuggestions
 
   if [ -d "$HOME/.zsh/zsh-autosuggestions" ]; then
     echo "Zsh-autosuggestions directory already exists. Skipping git clone."
@@ -71,7 +92,6 @@ clone_repositories() {
     }
   fi
 
-  # LazyVim installation
   echo "Installing lazyvim"
   rm -rf "$HOME/.config/nvim" # Remove existing nvim directory before cloning
   git clone https://github.com/LazyVim/starter ~/.config/nvim || {
@@ -80,7 +100,6 @@ clone_repositories() {
   }
   rm -rf ~/.config/nvim/.git
 
-  # lazygit installation
   if ! command -v curl &>/dev/null; then
     echo "CURL NOT INSTALLED, LAZYGIT INSTALLATION CANCELLED."
     return 1
@@ -151,31 +170,14 @@ zsh_configurations() {
   # Adding path
   echo 'export PATH="$HOME/.cargo/bin:$PATH"' >>~/.zshrc
 
+  cp -afv ~/linuxtools/dotfiles/shell $HOME/.zsh
+
+  echo "Adding themes and aliases..."
   # Powerlevel10k and Zsh-autosuggestions
   echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
   echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
-
-  # Adding aliases
-  echo "Adding aliases..."
-  echo "alias updateUpgrade='sudo apt update && sudo apt upgrade -y'" >>~/.zshrc
-
-  # ls to eza
-  if ! type "eza" >/dev/null 2>&1; then
-    echo "Alias 'eza' not available, skipping..."
-  else
-    echo "alias ls='eza'" >>~/.zshrc
-  fi
-
-  # cat to batcat
-  if type "bat" >/dev/null 2>&1; then
-    echo "Using 'bat' as replacement for 'cat'..."
-    echo "alias cat='bat'" >>~/.zshrc
-  elif type "batcat" >/dev/null 2>&1; then
-    echo "Using 'batcat' as replacement for 'cat'..."
-    echo "alias cat='batcat'" >>~/.zshrc
-  else
-    echo "Neither 'bat' nor 'batcat' found, skipping..."
-  fi
+  echo 'source ~/.zsh/shell/rc' >>~/.zshrc
+  echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
 
   # ------ TERMINAL KEYBINDINGS ------ #
   # Creates zsh config directory
@@ -214,6 +216,37 @@ tmux_configurations() {
   else
     echo "Creating .tmux.conf"
     mv ~/linuxtools/dotfiles/.tmux.conf ~
+  fi
+}
+
+nvim_config() {
+  THEME_DIR=$HOME/.config/nvim/lua/plugins/
+  SELF_PATH=$HOME/linuxtools
+
+  cp -v $SELF_PATH/dotfiles/nvim/catppuccin.lua $HOME/.config/nvim/lua/plugins/
+
+  if [ ! -f $THEME_DIR/catppuccin.lua ]; then
+    echo "Neovim theme was not installed."
+  else
+    echo "Neovim theme installed successfully."
+  fi
+}
+
+terminator_config() {
+  echo "Configuring Terminator..."
+
+  TERMINATOR_DIR=$HOME/.config/terminator
+
+  if [ ! -d "$TERMINATOR_DIR" ]; then
+    mkdir "$TERMINATOR_DIR"
+  fi
+
+  touch "$TERMINATOR_DIR/config"
+
+  if [ ! -f "$TERMINATOR_DIR/config" ]; then
+    echo "ERORR: terminator config file not present."
+  else
+    cat ~/linuxtools/dotfiles/terminator/config >"$TERMINATOR_DIR/config"
   fi
 }
 

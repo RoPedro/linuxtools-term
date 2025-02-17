@@ -1,0 +1,8 @@
+[global_config]
+[keybindings]
+[profiles]
+  [[default]]
+    background_darkness = 0.7
+    cursor_color = "#aaaaaa"
+    show_titlebar = False
+

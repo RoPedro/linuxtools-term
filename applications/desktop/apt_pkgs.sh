@@ -1,0 +1,14 @@
+gui_packages=(
+  "neofetch"
+  "ffmpeg"
+  "terminator"
+  "vlc"
+  "code"
+  "discord"
+  "steam"
+  "gnome-tweaks"
+  "dconf-editor"
+  "krita"
+  "obs-studio"
+  "shotcut"
+)
