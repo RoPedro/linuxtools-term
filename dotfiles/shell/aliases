@@ -4,6 +4,7 @@ alias lsa='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
 alias ncdu='ncdu --color dark'
+alias prj='$HOME/projects'
 
 # Tools
 alias nv='nvim'
