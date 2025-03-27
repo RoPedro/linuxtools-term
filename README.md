@@ -1,5 +1,5 @@
 # Alpha 2!
-linuxtools now comes with the installation of graphical packages in case running x11 or wayland.
+linuxtools now comes with the installation of graphical packages in case running it detects x11 or wayland.
 
 ## Disclaimer: This repository focus on installing the necessary development tools and customization to a Ubuntu/derivatives enviroment. The installed packages are **completely opinionated and hardcoded for my usecase**, I'm not planning on making  it general purpose, the GitHub upload is more of a backup than anything else.
 
