@@ -7,15 +7,15 @@ linuxtools now comes with the installation of graphical packages in case running
 The script aims to install essential packages for development, configuring terminal shortcuts, and use pre-existing configuration files for applications that are tipically customized or riced, if x11 or wayland is detected, desktop applications like terminal emulators and web browsers will also be insatlled.
 
 ## Installation
-Install Git:
+Certify you have Git:
 ```bash
 sudo apt install git
 ```
 
 Clone the repository:
 ```bash
-git clone https://github.com/RoPedro/linuxtools $HOME/linuxtools &&
-cd $HOME/linuxtools
+git clone https://github.com/RoPedro/linuxtools-term $HOME/linuxtools-term &&
+cd $HOME/linuxtools-term
 ```
 
 Run the first script to install zsh:
