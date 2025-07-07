@@ -1,3 +1,5 @@
+# This repository is currently archived due to a lack of interest in maintaining the desktop functionalities, my focus will be moved to CLI only setup. My work will be continued in [linuxtools-term](https://github.com/RoPedro/linuxtools-term) 
+
 # Alpha 2!
 linuxtools now comes with the installation of graphical packages in case running it detects x11 or wayland.
 
