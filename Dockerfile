@@ -16,8 +16,8 @@ USER testuser
 WORKDIR /home/testuser
 
 # Gets the linuxtools-term repo
-RUN git clone --branch dev https://github.com/RoPedro/linuxtools-term.git \
-  && cd linuxtools && ./zsh_config.sh
+COPY . /home/testuser/linuxtools-term
+WORKDIR /home/testuser/linuxtools-term
 
 # Starts bash for debugging
 CMD ["bash"]
