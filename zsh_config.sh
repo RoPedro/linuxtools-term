@@ -4,7 +4,7 @@
 sudo apt-get update -y
 sudo apt-get install -y zsh
 
-chmod +x ~/linuxtools/configure.sh
+chmod +x $HOME/linuxtools-term/configure.sh
 
 # Change default shell to Zsh
 sudo chsh -s $(which zsh) $USER
