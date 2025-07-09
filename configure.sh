@@ -10,11 +10,9 @@ main() {
   install_packages
   asdf_configure
   clone_repositories
-  install_nerdfonts
   zsh_configurations
   tmux_configurations
   nvim_config
-  terminator_config
   p10k_configuration
 
   echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
