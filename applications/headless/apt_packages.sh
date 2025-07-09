@@ -6,7 +6,6 @@ packages=(
   "iproute2"
   "avahi-daemon"
   "fontconfig"
-  "podman"
   "vim"
   "neovim"
   "tldr"
