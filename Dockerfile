@@ -15,9 +15,9 @@ RUN useradd -ms /bin/bash testuser && \
 USER testuser
 WORKDIR /home/testuser
 
-# Gets the linuxtools repo
-RUN git clone --branch alpha2/desktopUpdate https://github.com/RoPedro/linuxtools.git \
-  && cd linuxtools && ./zsh_config.sh
+# Gets the linuxtools-term repo
+COPY . /home/testuser/linuxtools-term
+WORKDIR /home/testuser/linuxtools-term
 
 # Starts bash for debugging
 CMD ["bash"]
