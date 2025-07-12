@@ -13,6 +13,7 @@ main() {
   zsh_configurations
   tmux_configurations
   nvim_config
+  btop_configure
   p10k_configuration
 
   echo "Configuration complete. Run "source ~/.zshrc" and "source ~/.tmux.conf" to apply changes."
