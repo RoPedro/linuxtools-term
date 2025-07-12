@@ -35,6 +35,7 @@ packages=(
   "libreadline-dev"
   "libncurses5-dev"
   "libncursesw5-dev"
+  "ca-certificates"
   "make"
   "ripgrep"
   "gh"
