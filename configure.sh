@@ -3,12 +3,21 @@
 LOG_FILE="main.log"
 
 source ./applications/headless/apt_packages.sh
+source ./applications/headless/languages.sh
 source ./utils.sh
 
 main() {
   check_configure_git
+
+  echo "Do you wish to install the following programming languages using ASDF?"
+  for language in "${asdf_languages[@]}"; do
+      echo "- $language"
+  done
+  echo -n "[Y/n]: "
+  read answer
+
   install_packages
-  asdf_configure
+  asdf_configure "$answer"
   clone_repositories
   zsh_configurations
   tmux_configurations

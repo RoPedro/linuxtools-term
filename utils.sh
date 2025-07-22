@@ -4,7 +4,6 @@ install_packages() {
 
     # Rust
     source ./applications/headless/rustup.sh
-    ./applications/headless/rustup.sh
 
     # Install packages with error handling
     echo "Installing terminal apt pkgs..."
@@ -38,17 +37,18 @@ asdf_configure() {
         echo "asdf already installed, skipping..."
     fi
 
-    #asdf_languages=(
-    #    "nodejs"
-    #    "ruby"
-    #    "python"
-    #)
+    if [[ "$answer" == "Y" || "$answer" == "y" && "$answer" != "" ]]; then
+        source ./applications/headless/languages.sh
 
-    #for language in "${asdf_languages[@]}"; do
-    #    asdf plugin-add $language
-    #    asdf install $language latest
-    #    asdf global $language latest
-    #done
+        echo "Installing ASDF languages..."
+        for language in "${asdf_languages[@]}"; do
+            asdf plugin-add $language
+            asdf install $language latest
+            asdf global $language latest
+        done
+    else
+        echo "Skipping ASDF language installation."
+    fi
 }
 
 # Clones repositories
